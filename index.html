@@ -71,15 +71,331 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Computer Network" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-java" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/07/20/Computer%20Network/" class="article-date">
-  <time class="dt-published" datetime="2021-07-20T21:36:46.996Z" itemprop="datePublished">2021-07-20</time>
+    <a href="/2021/07/20/java/" class="article-date">
+  <time class="dt-published" datetime="2021-07-20T20:23:50.870Z" itemprop="datePublished">2021-07-20</time>
 </a>
     
   </div>
   <div class="article-inner">
     
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/20/java/" data-id="ckrciseo40000h4ibearbg47s" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-title" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/19/title/" class="article-date">
+  <time class="dt-published" datetime="2021-07-19T02:53:50.000Z" itemprop="datePublished">2021-07-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/07/19/title/">数据库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="MyISAM和InnoDB区别"><a href="#MyISAM和InnoDB区别" class="headerlink" title="MyISAM和InnoDB区别"></a>MyISAM和InnoDB区别</h3><p>MyISAM 发音: My I Sam<br>最大的特点: MyISAM崩溃后无法安全回复</p>
+<ul>
+<li><p><strong>是否支持行级锁</strong>  : MyISAM 只有表级锁(table-level locking)，而InnoDB 支持行级锁(row-level locking)和表级锁,默认为行级锁</p>
+</li>
+<li><p><strong>是否支持事务和崩溃后的安全恢复</strong>： MyISAM 强调的是性能，每次查询具有原子性,其执行速度比InnoDB类型更快，但是不提供事务支持。但是InnoDB 提供事务支持事务，外部键等高级数据库功能。 具有事务(commit)、回滚(rollback)和崩溃修复能力(crash recovery capabilities)的事务安全(transaction-safe (ACID compliant))型表。</p>
+</li>
+<li><p><strong>是否支持外键</strong>： MyISAM不支持，而InnoDB支持。</p>
+</li>
+</ul>
+<h3 id="数据库事务的四大特性"><a href="#数据库事务的四大特性" class="headerlink" title="数据库事务的四大特性"></a><strong>数据库事务的四大特性</strong></h3><ul>
+<li><p>原⼦性（Atomicity）： 事务是最⼩的执⾏单位，不允许分割。事务的原⼦性确保动作要么全部完成，要么完全不起作⽤；</p>
+</li>
+<li><p>⼀致性（Consistency）： 执⾏事务前后，数据保持⼀致，多个事务对同⼀个数据读取的结果是相同的；</p>
+</li>
+<li><p>隔离性（Isolation）： 并发访问数据库时，⼀个⽤户的事务不被其他事务所⼲扰，各并发事务之间数据库是独⽴的；</p>
+</li>
+<li><p>持久性（Durability）： ⼀个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发⽣故障也不应该对其有任何影响。</p>
+</li>
+</ul>
+<h3 id="并发事带来哪些问题"><a href="#并发事带来哪些问题" class="headerlink" title="并发事带来哪些问题"></a><strong>并发事带来哪些问题</strong></h3><ul>
+<li><strong>脏读</strong>: 先写后读，但是读的是原来的数据</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>时间顺序</th>
+<th>转账事务</th>
+<th>取款事务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td></td>
+<td>开始事务</td>
+</tr>
+<tr>
+<td>2</td>
+<td>开始事务</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td>查询余额2000元</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td>取款1000元 余额变成1000元</td>
+</tr>
+<tr>
+<td>5</td>
+<td>查询余额变成1000元</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td>取款发生错误，事务回滚，余额变成2000元</td>
+</tr>
+<tr>
+<td>7</td>
+<td>转入2000元 余额变成3000元</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>提交事务</td>
+<td></td>
+</tr>
+<tr>
+<td>结果</td>
+<td>按照正常逻辑，此时账户余额应该为4000元</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>丢失修改</strong>: 先读再写再读后写，但是第一次写没作用，因为读的是之前的数据</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>时间顺序</th>
+<th>转账事务</th>
+<th>取款事务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>开始事务</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>第一次查询 账户余额2000元</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td>开始事务</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td>取款1000元 余额变成1000元</td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td>提交事务</td>
+</tr>
+<tr>
+<td>6</td>
+<td>取款1000元 余额变成1000元</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>第二次查询 账户余额1000元</td>
+<td></td>
+</tr>
+<tr>
+<td>结果</td>
+<td>按照正常逻辑，第二次事务结束后，余额应该归零</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>不可重复读</strong>: 先读后写，但是在一个transaction里面还没读完，就写了。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>时间顺序</th>
+<th>转账事务</th>
+<th>取款事务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>开始事务</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>第一次查询 账户余额2000元</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td>开始事务</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td>取款1000元 余额变成1000元</td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td>提交事务</td>
+</tr>
+<tr>
+<td>6</td>
+<td>查询余额变成1000元</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>第二次查询 账户余额1000元</td>
+<td></td>
+</tr>
+<tr>
+<td>结果</td>
+<td>按照正常逻辑，同一个事务里，读取刀的余额应该一致</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>幻读</strong>: 先读后写，但是还没读完就读到了写的内容，导致读错。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>时间顺序</th>
+<th>转账事务</th>
+<th>取款事务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>开始事务</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>第一次查询 发现2条转账记录</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td>开始事务</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td>取进行1次转账</td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td>提交事务</td>
+</tr>
+<tr>
+<td>6</td>
+<td>第二次查询 发现3条转账记录</td>
+<td></td>
+</tr>
+<tr>
+<td>结果</td>
+<td>按照正常逻辑，同一个事务里，查询到的转账数量应该一样</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="事务隔离级别有哪些？MySQL的默认隔离级别？"><a href="#事务隔离级别有哪些？MySQL的默认隔离级别？" class="headerlink" title="事务隔离级别有哪些？MySQL的默认隔离级别？"></a><strong>事务隔离级别有哪些？MySQL的默认隔离级别？</strong></h3><ul>
+<li>**READ-UNCOMMITTED(读取未提交)**： 最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读。</li>
+<li>**READ-COMMITTED(读取已提交)**： 允许读取并发事务已经提交的数据，可以阻止脏读，但是幻读或不可重复读仍有可能发生。</li>
+<li>**REPEATABLE-READ(可重复读)**： 对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生。</li>
+<li>**SERIALIZABLE(可串行化)**： 最高的隔离级别，完全服从ACID的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止脏读、不可重复读以及幻读。</li>
+</ul>
+<h3 id="当MySQL单表记录数过大时，数据库的CRUD性能会明显下降，说一些常见的优化措施："><a href="#当MySQL单表记录数过大时，数据库的CRUD性能会明显下降，说一些常见的优化措施：" class="headerlink" title="当MySQL单表记录数过大时，数据库的CRUD性能会明显下降，说一些常见的优化措施："></a>当MySQL单表记录数过大时，数据库的CRUD性能会明显下降，说一些常见的优化措施：</h3><ul>
+<li>限定数据的范围，如只搜索最近一个月的数据</li>
+<li>读写分离 主库负责写 从库负责读</li>
+<li>垂直分区： 把一个表根据逻辑关系拆开<br><img src="/images/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9E%82%E7%9B%B4%E5%88%86%E5%8C%BA.png"></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/19/title/" data-id="ckratulzn0000agibg93x0w7p" data-title="数据库" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag">面试题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Computer Network" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/Computer%20Network/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T02:53:50.000Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/07/18/Computer%20Network/">计算机网络</a>
+    </h1>
+  
+
+      </header>
     
     <div class="e-content article-entry" itemprop="articleBody">
       
@@ -441,311 +757,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/20/Computer%20Network/" data-id="ckrckv4dn0000b8ib7upfhwu3" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-java" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/07/20/java/" class="article-date">
-  <time class="dt-published" datetime="2021-07-20T20:23:50.870Z" itemprop="datePublished">2021-07-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/20/java/" data-id="ckrciseo40000h4ibearbg47s" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-title" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/07/19/title/" class="article-date">
-  <time class="dt-published" datetime="2021-07-19T02:53:50.000Z" itemprop="datePublished">2021-07-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/07/19/title/">数据库</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="MyISAM和InnoDB区别"><a href="#MyISAM和InnoDB区别" class="headerlink" title="MyISAM和InnoDB区别"></a>MyISAM和InnoDB区别</h3><p>MyISAM 发音: My I Sam<br>最大的特点: MyISAM崩溃后无法安全回复</p>
-<ul>
-<li><p><strong>是否支持行级锁</strong>  : MyISAM 只有表级锁(table-level locking)，而InnoDB 支持行级锁(row-level locking)和表级锁,默认为行级锁</p>
-</li>
-<li><p><strong>是否支持事务和崩溃后的安全恢复</strong>： MyISAM 强调的是性能，每次查询具有原子性,其执行速度比InnoDB类型更快，但是不提供事务支持。但是InnoDB 提供事务支持事务，外部键等高级数据库功能。 具有事务(commit)、回滚(rollback)和崩溃修复能力(crash recovery capabilities)的事务安全(transaction-safe (ACID compliant))型表。</p>
-</li>
-<li><p><strong>是否支持外键</strong>： MyISAM不支持，而InnoDB支持。</p>
-</li>
-</ul>
-<h3 id="数据库事务的四大特性"><a href="#数据库事务的四大特性" class="headerlink" title="数据库事务的四大特性"></a><strong>数据库事务的四大特性</strong></h3><ul>
-<li><p>原⼦性（Atomicity）： 事务是最⼩的执⾏单位，不允许分割。事务的原⼦性确保动作要么全部完成，要么完全不起作⽤；</p>
-</li>
-<li><p>⼀致性（Consistency）： 执⾏事务前后，数据保持⼀致，多个事务对同⼀个数据读取的结果是相同的；</p>
-</li>
-<li><p>隔离性（Isolation）： 并发访问数据库时，⼀个⽤户的事务不被其他事务所⼲扰，各并发事务之间数据库是独⽴的；</p>
-</li>
-<li><p>持久性（Durability）： ⼀个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发⽣故障也不应该对其有任何影响。</p>
-</li>
-</ul>
-<h3 id="并发事带来哪些问题"><a href="#并发事带来哪些问题" class="headerlink" title="并发事带来哪些问题"></a><strong>并发事带来哪些问题</strong></h3><ul>
-<li><strong>脏读</strong>: 先写后读，但是读的是原来的数据</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>时间顺序</th>
-<th>转账事务</th>
-<th>取款事务</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td></td>
-<td>开始事务</td>
-</tr>
-<tr>
-<td>2</td>
-<td>开始事务</td>
-<td></td>
-</tr>
-<tr>
-<td>3</td>
-<td></td>
-<td>查询余额2000元</td>
-</tr>
-<tr>
-<td>4</td>
-<td></td>
-<td>取款1000元 余额变成1000元</td>
-</tr>
-<tr>
-<td>5</td>
-<td>查询余额变成1000元</td>
-<td></td>
-</tr>
-<tr>
-<td>6</td>
-<td></td>
-<td>取款发生错误，事务回滚，余额变成2000元</td>
-</tr>
-<tr>
-<td>7</td>
-<td>转入2000元 余额变成3000元</td>
-<td></td>
-</tr>
-<tr>
-<td>8</td>
-<td>提交事务</td>
-<td></td>
-</tr>
-<tr>
-<td>结果</td>
-<td>按照正常逻辑，此时账户余额应该为4000元</td>
-<td></td>
-</tr>
-</tbody></table>
-<ul>
-<li><strong>丢失修改</strong>: 先读再写再读后写，但是第一次写没作用，因为读的是之前的数据</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>时间顺序</th>
-<th>转账事务</th>
-<th>取款事务</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>开始事务</td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td>第一次查询 账户余额2000元</td>
-<td></td>
-</tr>
-<tr>
-<td>3</td>
-<td></td>
-<td>开始事务</td>
-</tr>
-<tr>
-<td>4</td>
-<td></td>
-<td>取款1000元 余额变成1000元</td>
-</tr>
-<tr>
-<td>5</td>
-<td></td>
-<td>提交事务</td>
-</tr>
-<tr>
-<td>6</td>
-<td>取款1000元 余额变成1000元</td>
-<td></td>
-</tr>
-<tr>
-<td>7</td>
-<td>第二次查询 账户余额1000元</td>
-<td></td>
-</tr>
-<tr>
-<td>结果</td>
-<td>按照正常逻辑，第二次事务结束后，余额应该归零</td>
-<td></td>
-</tr>
-</tbody></table>
-<ul>
-<li><strong>不可重复读</strong>: 先读后写，但是在一个transaction里面还没读完，就写了。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>时间顺序</th>
-<th>转账事务</th>
-<th>取款事务</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>开始事务</td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td>第一次查询 账户余额2000元</td>
-<td></td>
-</tr>
-<tr>
-<td>3</td>
-<td></td>
-<td>开始事务</td>
-</tr>
-<tr>
-<td>4</td>
-<td></td>
-<td>取款1000元 余额变成1000元</td>
-</tr>
-<tr>
-<td>5</td>
-<td></td>
-<td>提交事务</td>
-</tr>
-<tr>
-<td>6</td>
-<td>查询余额变成1000元</td>
-<td></td>
-</tr>
-<tr>
-<td>7</td>
-<td>第二次查询 账户余额1000元</td>
-<td></td>
-</tr>
-<tr>
-<td>结果</td>
-<td>按照正常逻辑，同一个事务里，读取刀的余额应该一致</td>
-<td></td>
-</tr>
-</tbody></table>
-<ul>
-<li><strong>幻读</strong>: 先读后写，但是还没读完就读到了写的内容，导致读错。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>时间顺序</th>
-<th>转账事务</th>
-<th>取款事务</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>开始事务</td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td>第一次查询 发现2条转账记录</td>
-<td></td>
-</tr>
-<tr>
-<td>3</td>
-<td></td>
-<td>开始事务</td>
-</tr>
-<tr>
-<td>4</td>
-<td></td>
-<td>取进行1次转账</td>
-</tr>
-<tr>
-<td>5</td>
-<td></td>
-<td>提交事务</td>
-</tr>
-<tr>
-<td>6</td>
-<td>第二次查询 发现3条转账记录</td>
-<td></td>
-</tr>
-<tr>
-<td>结果</td>
-<td>按照正常逻辑，同一个事务里，查询到的转账数量应该一样</td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id="事务隔离级别有哪些？MySQL的默认隔离级别？"><a href="#事务隔离级别有哪些？MySQL的默认隔离级别？" class="headerlink" title="事务隔离级别有哪些？MySQL的默认隔离级别？"></a><strong>事务隔离级别有哪些？MySQL的默认隔离级别？</strong></h3><ul>
-<li>**READ-UNCOMMITTED(读取未提交)**： 最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读。</li>
-<li>**READ-COMMITTED(读取已提交)**： 允许读取并发事务已经提交的数据，可以阻止脏读，但是幻读或不可重复读仍有可能发生。</li>
-<li>**REPEATABLE-READ(可重复读)**： 对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生。</li>
-<li>**SERIALIZABLE(可串行化)**： 最高的隔离级别，完全服从ACID的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止脏读、不可重复读以及幻读。</li>
-</ul>
-<h3 id="当MySQL单表记录数过大时，数据库的CRUD性能会明显下降，说一些常见的优化措施："><a href="#当MySQL单表记录数过大时，数据库的CRUD性能会明显下降，说一些常见的优化措施：" class="headerlink" title="当MySQL单表记录数过大时，数据库的CRUD性能会明显下降，说一些常见的优化措施："></a>当MySQL单表记录数过大时，数据库的CRUD性能会明显下降，说一些常见的优化措施：</h3><ul>
-<li>限定数据的范围，如只搜索最近一个月的数据</li>
-<li>读写分离 主库负责写 从库负责读</li>
-<li>垂直分区： 把一个表根据逻辑关系拆开<br><img src="/images/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9E%82%E7%9B%B4%E5%88%86%E5%8C%BA.png"></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/19/title/" data-id="ckratulzn0000agibg93x0w7p" data-title="数据库" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/07/18/Computer%20Network/" data-id="ckrckv4dn0000b8ib7upfhwu3" data-title="计算机网络" class="article-share-link">Share</a>
       
       
       
@@ -804,15 +816,15 @@
       <ul>
         
           <li>
-            <a href="/2021/07/20/Computer%20Network/">(no title)</a>
-          </li>
-        
-          <li>
             <a href="/2021/07/20/java/">(no title)</a>
           </li>
         
           <li>
             <a href="/2021/07/19/title/">数据库</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/Computer%20Network/">计算机网络</a>
           </li>
         
       </ul>
