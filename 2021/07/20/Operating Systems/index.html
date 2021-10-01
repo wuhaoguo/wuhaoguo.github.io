@@ -157,7 +157,7 @@
 <li>回到这个问题的教科书答案:进程（Process）是系统进行资源分配和调度的基本单位，线程（Thread）是CPU调度和分派的基本单位；这就意味着，进程有自己的独享内存地址空间，而线程共享进程内存，进程也有IO和调用操作系统的其他硬件软件的能力，而线程要通过进程来完成这些操作。</li>
 <li>多线程程序只要有一个线程崩溃，往往就会引起整个进程的崩溃，从而导致软件整体崩溃，但多进程程序中一个进程崩溃并不会对其它进程造成影响，因为进程有自己的独立地址空间；同时其他进程可以捕捉到崩溃的进程，从而进行异常处理，从而保证程序整体平稳的运行。</li>
 </ul>
-<p>进程操作代码实现，可以参考：<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017628290184064">多进程 - 廖雪峰的官方网站</a></p>
+<p>进程操作代码实现，可以参考：<a class="link" target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017628290184064">多进程 - 廖雪峰的官方网站<i class="fas fa-external-link-alt"></i></a></p>
 <h5 id="同一进程中的线程可以共享哪些数据？"><a href="#同一进程中的线程可以共享哪些数据？" class="headerlink" title="同一进程中的线程可以共享哪些数据？"></a>同一进程中的线程可以共享哪些数据？</h5><details>
 <summary>展开</summary>
 它们共享的是堆和方法区资源
@@ -196,8 +196,8 @@ Java 堆主要包括对象，数组和类加载器加载之后的类的相关信
 <li>套接字(Socket)<br>主要是远程主机的两个进程之间通过网络协议和端口进行通信<br>更详细的可以参考（待整理）：</li>
 </ol>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://imageslr.github.io/2020/02/26/ipc.html">https://imageslr.github.io/2020/02/26/ipc.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c1015f5ffa74">https://www.jianshu.com/p/c1015f5ffa74</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://imageslr.github.io/2020/02/26/ipc.html">https://imageslr.github.io/2020/02/26/ipc.html<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://www.jianshu.com/p/c1015f5ffa74">https://www.jianshu.com/p/c1015f5ffa74<i class="fas fa-external-link-alt"></i></a></li>
 </ul>
 <h3 id="进程同步问题"><a href="#进程同步问题" class="headerlink" title="进程同步问题"></a>进程同步问题</h3><blockquote>
 <p>进程的同步是目的，而进程间通信是实现进程同步的手段</p>
@@ -373,7 +373,7 @@ Java 堆主要包括对象，数组和类加载器加载之后的类的相关信
 <p>中断由处理器<strong>外部</strong>的<strong>硬件</strong>产生，不是执行某条指令的结果，也无法预测发生时机。由于中断独立于当前执行的程序，因此中断是异步事件。中断包括 I/O 设备发出的 I/O 中断、各种定时器引起的时钟中断、调试程序中设置的断点等引起的调试中断等。</p>
 <p>异常是一种错误情况，是执行当前指令的结果，可能被错误处理程序修正，也可能直接终止应用程序。异常是同步的。这里特指因为执行当前指令而产生的<strong>错误情况</strong>，比如除法异常、缺页异常等。有些书上为了区分，也将这类“异常”称为<strong>“故障”</strong>。</p>
 <p>信号是一种<strong>更高层的</strong>软件形式的异常，同样会中断进程的控制流，可以由进程进行处理。一个信号代表了一个消息。信号的作用是用来<strong>通知进程</strong>发生了某种系统事件。</p>
-<p>更详细的可以参考：<a target="_blank" rel="noopener" href="https://imageslr.github.io/2020/07/09/trap-interrupt-exception.html">https://imageslr.github.io/2020/07/09/trap-interrupt-exception.html</a></p>
+<p>更详细的可以参考：<a class="link" target="_blank" rel="noopener" href="https://imageslr.github.io/2020/07/09/trap-interrupt-exception.html">https://imageslr.github.io/2020/07/09/trap-interrupt-exception.html<i class="fas fa-external-link-alt"></i></a></p>
 <h3 id="什么是IO多路复用？怎么实现？"><a href="#什么是IO多路复用？怎么实现？" class="headerlink" title="什么是IO多路复用？怎么实现？"></a>什么是IO多路复用？怎么实现？</h3><p>IO多路复用（IO Multiplexing）是指单个进程/线程就可以同时处理多个IO请求。</p>
 <p>实现原理：用户将想要监视的文件描述符（File Descriptor）添加到select/poll/epoll函数中，由内核监视，函数阻塞。一旦有文件描述符就绪（读就绪或写就绪），或者超时（设置timeout），函数就会返回，然后该进程可以进行相应的读/写操作。</p>
 <details>
@@ -509,7 +509,7 @@ Java 堆主要包括对象，数组和类加载器加载之后的类的相关信
 <li>碎片：分段没有内碎片，但会产生外碎片；分页没有外碎片，但会产生内碎片（一个页填不满）；当碎片太多的时候，就需要把内存的文件写到磁盘上，再装载回内存，这个过程就是swap<h3 id="为什么要有虚拟内存"><a href="#为什么要有虚拟内存" class="headerlink" title="为什么要有虚拟内存"></a>为什么要有虚拟内存</h3>单片机就是直接操作内存的物理地址的，这是因为单片机只需要运行一个程序。如果运行多个程序，这些程序就会互相擦写别的程序的数据，造成运行时的严重异常。我们当然也可以把物理内存直接二分，然后每个程序使用一块，这样虽然不会造成程序的崩溃，但是这就造成了内存资源的严重浪费。这时，操作系统把物理内存分成了很多的页，这些页被映射到了物理内存，或者电脑的磁盘中。<h3 id="什么是虚拟内存？"><a href="#什么是虚拟内存？" class="headerlink" title="什么是虚拟内存？"></a>什么是虚拟内存？</h3>每个程序都拥有自己的地址空间，这个地址空间被分成大小相等的页，这些页被映射到物理内存；但不需要所有的页都在物理内存中，当程序引用到不在物理内存中的页时，由操作系统将缺失的部分装入物理内存。这样，对于程序来说，逻辑上似乎有很大的内存空间，只是实际上有一部分是存储在磁盘上，因此叫做虚拟内存。</li>
 </ul>
 <p>虚拟内存的优点是让程序可以获得更多的可用内存。</p>
-<p>虚拟内存的实现方式、页表/多级页表、缺页中断、不同的页面淘汰算法：<a target="_blank" rel="noopener" href="https://imageslr.github.io/2020/07/08/tech-interview.html#virtual-memory">答案</a>。</p>
+<p>虚拟内存的实现方式、页表/多级页表、缺页中断、不同的页面淘汰算法：<a class="link" target="_blank" rel="noopener" href="https://imageslr.github.io/2020/07/08/tech-interview.html#virtual-memory">答案<i class="fas fa-external-link-alt"></i></a>。</p>
 <h5 id="如何进行地址空间到物理内存的映射？"><a href="#如何进行地址空间到物理内存的映射？" class="headerlink" title="如何进行地址空间到物理内存的映射？"></a>如何进行地址空间到物理内存的映射？</h5><details>
 <summary>展开</summary>
 
@@ -558,7 +558,7 @@ C 语言使用运行时栈来存储过程信息。每个函数的信息存储在
 </ul>
 </details>
 
-<p>更详细的可以参考：<a target="_blank" rel="noopener" href="https://imageslr.github.io/2020/07/08/tech-interview.html#stackoverflow">https://imageslr.github.io/2020/07/08/tech-interview.html#stackoverflow</a></p>
+<p>更详细的可以参考：<a class="link" target="_blank" rel="noopener" href="https://imageslr.github.io/2020/07/08/tech-interview.html#stackoverflow">https://imageslr.github.io/2020/07/08/tech-interview.html#stackoverflow<i class="fas fa-external-link-alt"></i></a></p>
 <h3 id="磁盘调度"><a href="#磁盘调度" class="headerlink" title="磁盘调度"></a>磁盘调度</h3><p>过程：磁头（找到对应的盘面）；磁道（一个盘面上的同心圆环，寻道时间）；扇区（旋转时间）。为减小寻道时间的调度算法：</p>
 <ul>
 <li>先来先服务</li>
@@ -566,11 +566,11 @@ C 语言使用运行时栈来存储过程信息。每个函数的信息存储在
 <li>电梯算法：电梯总是保持一个方向运行，直到该方向没有请求为止，然后改变运行方向。</li>
 </ul>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c1015f5ffa74">进程间通信IPC – 简书</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/justloveyou_/article/details/78304294">面试/笔试第二弹 —— 操作系统面试问题集锦 - CSDN博客</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018970361">线程同步与并发 - - SegmentFault</a></li>
-<li><a target="_blank" rel="noopener" href="http://baijiahao.baidu.com/s?id=1641172494287388070&wfr=spider&for=pc">彻底搞懂epoll高效运行的原理</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lirong21/p/4213028.html">用户态与内核态的切换</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://www.jianshu.com/p/c1015f5ffa74">进程间通信IPC – 简书<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/justloveyou_/article/details/78304294">面试/笔试第二弹 —— 操作系统面试问题集锦 - CSDN博客<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018970361">线程同步与并发 - - SegmentFault<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link" target="_blank" rel="noopener" href="http://baijiahao.baidu.com/s?id=1641172494287388070&wfr=spider&for=pc">彻底搞懂epoll高效运行的原理<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/lirong21/p/4213028.html">用户态与内核态的切换<i class="fas fa-external-link-alt"></i></a></li>
 </ul>
 <h3 id="待完成"><a href="#待完成" class="headerlink" title="待完成"></a>待完成</h3><ul>
 <li><input disabled type="checkbox"> IPC</li>
